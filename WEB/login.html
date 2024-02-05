@@ -4,47 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login form</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="logn.css" />
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          const urlParams = new URLSearchParams(window.location.search);
+          const error = urlParams.get('error');
+
+          if (error === 'invalid_password') {
+              alert('Invalid password. Please enter correct details.');
+          } else if (error === 'invalid_username') {
+              alert('Invalid username. Please enter correct details.');
+          }
+      });
+  </script>
   </head>
   <body>
-<main>
-  <header>
-    <h4>LOGIN<a href="main1.html"></a></h4>
-  </header>
-  <form name="contact" netlify>
-    <div class="back">
-        <button onclick="goBack()">Go Back</button>
-
-    <script>
-        function goBack() {
-            window.location.href = 'main.html';
-        }
-    </script>     
-      </div>
-    <div class="form_wrapper">
-      <input id="input" type="text" required>
-      <label for="input">Username</label>
-      <i class="material-icons">person</i>
-    </div>
-    <div class="form_wrapper">
-      <input id="password" type="password" required>
-      <label for="password">Password</label>
-      <i class="material-icons">lock</i>
-    </div>
-    <div class="remember_box">
-      <div class="remember">
-        <input type="checkbox">
-        Remember me
-      </div>
-      <a href="#">Forgot Password ?</a>
-    </div>
-    <button>Login</button>
-    <div class="new_account">
-      Don't have account ? <a href="signup.html">Sign up</a>
-    </div>
-  </form>
-</main>
+    <main>
+      <header>
+        <h4>LOGIN<a href="main1.html"></a></h4>
+      </header>
+      <form action="login_process.php" method="post">
+        <div class="back">
+          <button onclick="goBack()">Go Back</button>
+          <script>
+            function goBack() {
+              window.location.href = 'main.html';
+            }
+          </script>
+        </div>
+        <div class="form_wrapper">
+          <input id="input" type="text" name="username" required>
+          <label for="input">Username</label>
+          <i class="material-icons">person</i>
+        </div>
+        <div class="form_wrapper">
+          <input id="password" type="password" name="password" required>
+          <label for="password">Password</label>
+          <i class="material-icons">lock</i>
+        </div>
+        <div class="remember_box">
+          <div class="remember">
+            <input type="checkbox" name="remember">
+            Remember me
+          </div>
+          <a href="#">Forgot Password?</a>
+        </div>
+        <button type="submit">Login</button>
+        <div class="new_account">
+          Don't have an account? <a href="signup.html">Sign up</a>
+        </div>
+      </form>
+    </main>
   </body>
 </html>
